@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.loomi.loomi.domain.usuario.Usuario;
 import com.loomi.loomi.domain.usuario.UsuarioRepository;
-import com.loomi.loomi.dto.UsuarioDto;
 
 @Service
 public class UsuarioService {

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loomi.loomi.domain.usuario.Usuario;
-import com.loomi.loomi.domain.usuario.UsuarioRepository;
 import com.loomi.loomi.dto.UsuarioDto;
 import com.loomi.loomi.services.UsuarioService;
 
