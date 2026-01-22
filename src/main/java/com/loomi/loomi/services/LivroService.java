@@ -9,9 +9,14 @@ import com.loomi.loomi.domain.livro.LivroRepository;
 @Service
 public class LivroService {
 
-    @Autowired
+    @Autowired (required = true)
     private LivroRepository livroRepository;
 
+    public Livro buscarLivroPorId(Long id) {
+        Livro livro = this.livroRepository.findById(id).orElse(null);
+        return livro;
+    }
+    
     public Livro criarLivro(Livro livro){
         return livroRepository.save(livro);
     }

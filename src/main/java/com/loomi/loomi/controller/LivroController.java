@@ -13,15 +13,25 @@ import com.loomi.loomi.services.LivroService;
 import com.loomi.loomi.dto.LivroDto;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/livro")
 public class LivroController {
     
-    @Autowired
+    @Autowired (required = true)
     private LivroService livroService;
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Livro> buscarLivro(@PathVariable Long id) {
+        Livro livro = livroService.buscarLivroPorId(id);
 
-
+        return ResponseEntity.ok(livro);
+    }
+    
     @PostMapping
     public ResponseEntity<Livro> criarLivro(@RequestBody @Valid LivroDto livroDto) {
         Livro livro = new Livro();
