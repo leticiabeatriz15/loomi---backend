@@ -71,17 +71,17 @@ function BookCard({ livro, onDelete, onEdit }) {
       </div>
 
       {/* Informações */}
-      <div className="p-3 bg-white rounded-lg rounded-t-none">
-        <p className="text-xs text-slate-500 mb-2 truncate">ISBN: {livro.isbn}</p>
+      <div className="p-3 bg-white dark:bg-slate-800 rounded-lg rounded-t-none transition">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-2 truncate">ISBN: {livro.isbn}</p>
         
         {/* Barra de Progresso */}
         {progressPercent > 0 && (
           <div className="mb-2">
             <div className="flex justify-between items-center mb-1">
-              <span className="text-xs text-slate-600 font-semibold">Progresso</span>
-              <span className="text-xs text-slate-500">{progressPercent}%</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300 font-semibold">Progresso</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">{progressPercent}%</span>
             </div>
-            <div className="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+            <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5 overflow-hidden">
               <div
                 className="bg-gradient-to-r from-indigo-500 to-pink-500 h-full transition-all duration-300"
                 style={{ width: `${progressPercent}%` }}
@@ -91,11 +91,11 @@ function BookCard({ livro, onDelete, onEdit }) {
         )}
 
         {/* Botões de Ação */}
-        <div className="flex gap-2 pt-2 border-t border-slate-100">
+        <div className="flex gap-2 pt-2 border-t border-slate-100 dark:border-slate-700">
           <select
             value={livro.secoes || 'QUERO_LER'}
             onChange={(e) => onEdit({ ...livro, secoes: e.target.value })}
-            className="flex-1 bg-indigo-50 text-indigo-600 px-2 py-1.5 rounded hover:bg-indigo-100 transition text-xs font-medium cursor-pointer border border-indigo-200"
+            className="flex-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1.5 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition text-xs font-medium cursor-pointer border border-indigo-200 dark:border-indigo-800"
             title="Selecione o progresso da leitura"
           >
             <option value="QUERO_LER">Quero Ler</option>
@@ -104,7 +104,7 @@ function BookCard({ livro, onDelete, onEdit }) {
           </select>
           <button
             onClick={() => onDelete(livro.id)}
-            className="flex-1 flex items-center justify-center gap-1 bg-red-50 text-red-600 px-2 py-1.5 rounded hover:bg-red-100 transition text-xs font-medium"
+            className="flex-1 flex items-center justify-center gap-1 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-1.5 rounded hover:bg-red-100 dark:hover:bg-red-900/50 transition text-xs font-medium"
             title="Deletar livro"
           >
             <Trash2 className="w-3 h-3" />

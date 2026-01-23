@@ -55,28 +55,28 @@ function AddBookPage() {
       {/* Botão de voltar */}
       <button
         onClick={() => navigate('/')}
-        className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 mb-6 font-medium transition"
+        className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 mb-6 font-medium transition"
       >
         <ArrowLeft className="w-5 h-5" />
         Voltar para estante
       </button>
 
       {/* Formulário */}
-      <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-8 transition">
         <div className="flex items-center gap-3 mb-6">
           <div className="bg-gradient-to-br from-indigo-600 to-pink-600 p-3 rounded-lg">
             <BookPlus className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">Adicionar Livro</h1>
-            <p className="text-slate-600">Compartilhe um novo livro com sua estante virtual</p>
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Adicionar Livro</h1>
+            <p className="text-slate-600 dark:text-slate-400">Compartilhe um novo livro com sua estante virtual</p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* ISBN */}
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               ISBN *
             </label>
             <input
@@ -85,15 +85,15 @@ function AddBookPage() {
               value={formData.isbn}
               onChange={handleChange}
               placeholder="Ex: 978-8532519825"
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
               required
             />
-            <p className="text-xs text-slate-500 mt-1">ISBN do livro (identificador único)</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">ISBN do livro (identificador único)</p>
           </div>
 
           {/* Título */}
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Título do Livro *
             </label>
             <input
@@ -102,33 +102,33 @@ function AddBookPage() {
               value={formData.nome}
               onChange={handleChange}
               placeholder="Ex: O Senhor dos Anéis"
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
               required
             />
           </div>
 
           {/* Status */}
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
               Status de Leitura
             </label>
             <select
               name="secoes"
               value={formData.secoes}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
             >
               <option value="QUERO_LER">Quero Ler</option>
               <option value="LENDO">Estou Lendo</option>
               <option value="LIDO">Já Li</option>
             </select>
-            <p className="text-xs text-slate-500 mt-1">Qual é o status do livro na sua leitura?</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Qual é o status do livro na sua leitura?</p>
           </div>
 
           {/* Progresso */}
           {formData.secoes === 'LENDO' && (
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                 Progresso de Leitura: {formData.andamento}%
               </label>
               <input
@@ -138,9 +138,9 @@ function AddBookPage() {
                 max="100"
                 value={formData.andamento}
                 onChange={handleChange}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
               />
-              <div className="flex justify-between text-xs text-slate-500 mt-2">
+              <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mt-2">
                 <span>0%</span>
                 <span>50%</span>
                 <span>100%</span>
@@ -149,8 +149,8 @@ function AddBookPage() {
           )}
 
           {/* Preview */}
-          <div className="bg-slate-50 p-6 rounded-lg border border-slate-200">
-            <h3 className="font-semibold text-slate-900 mb-4">Prévia do Livro</h3>
+          <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Prévia do Livro</h3>
             <div className="flex gap-4">
               {/* Capa simulada */}
               <div className="w-24 h-36 bg-gradient-to-br from-indigo-600 to-pink-600 rounded-lg flex items-end justify-center p-2 text-white text-center">
@@ -160,13 +160,13 @@ function AddBookPage() {
               </div>
               {/* Info */}
               <div className="flex-1">
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-slate-600 dark:text-slate-300">
                   <span className="font-semibold">Título:</span> {formData.nome || '(não preenchido)'}
                 </p>
-                <p className="text-sm text-slate-600 mt-2">
+                <p className="text-sm text-slate-600 dark:text-slate-300 mt-2">
                   <span className="font-semibold">ISBN:</span> {formData.isbn || '(não preenchido)'}
                 </p>
-                <p className="text-sm text-slate-600 mt-2">
+                <p className="text-sm text-slate-600 dark:text-slate-300 mt-2">
                   <span className="font-semibold">Status:</span>
                   <span className={`ml-2 px-2 py-1 rounded text-xs font-semibold ${
                     formData.secoes === 'LENDO' ? 'bg-blue-100 text-blue-700' :
@@ -180,10 +180,10 @@ function AddBookPage() {
                 </p>
                 {formData.secoes === 'LENDO' && (
                   <>
-                    <p className="text-sm text-slate-600 mt-2">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 mt-2">
                       <span className="font-semibold">Progresso:</span> {formData.andamento}%
                     </p>
-                    <div className="w-full bg-slate-200 rounded-full h-2 mt-2">
+                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mt-2">
                       <div
                         className="bg-gradient-to-r from-indigo-500 to-pink-500 h-full rounded-full"
                         style={{ width: `${formData.andamento}%` }}
@@ -200,7 +200,7 @@ function AddBookPage() {
             <button
               type="button"
               onClick={() => navigate('/')}
-              className="flex-1 px-6 py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition font-semibold"
+              className="flex-1 px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition font-semibold"
             >
               Cancelar
             </button>

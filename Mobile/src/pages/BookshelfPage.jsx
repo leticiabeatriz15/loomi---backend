@@ -91,54 +91,54 @@ function BookshelfPage() {
     <div className="animate-fadeIn">
       {/* Estatísticas */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
           <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-indigo-800 bg-clip-text text-transparent">
             {stats.total}
           </div>
-          <p className="text-slate-600 text-sm mt-1">Livros na estante</p>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Livros na estante</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition">
-          <div className="text-3xl font-bold text-blue-600">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+          <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
             {stats.lendo}
           </div>
-          <p className="text-slate-600 text-sm mt-1">Estou lendo</p>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Estou lendo</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition">
-          <div className="text-3xl font-bold text-green-600">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+          <div className="text-3xl font-bold text-green-600 dark:text-green-400">
             {stats.lido}
           </div>
-          <p className="text-slate-600 text-sm mt-1">Já lidos</p>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Já lidos</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition">
-          <div className="text-3xl font-bold text-pink-600">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition">
+          <div className="text-3xl font-bold text-pink-600 dark:text-pink-400">
             {stats.queroLer}
           </div>
-          <p className="text-slate-600 text-sm mt-1">Quero ler</p>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Quero ler</p>
         </div>
       </div>
 
       {/* Barra de Filtro e Busca */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 mb-8">
+      <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 mb-8 transition">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Busca */}
           <div className="relative">
-            <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
+            <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400 dark:text-slate-500" />
             <input
               type="text"
               placeholder="Buscar por título ou ISBN..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+              className="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
             />
           </div>
 
           {/* Filtro */}
           <div className="relative flex items-center gap-2">
-            <Filter className="w-5 h-5 text-slate-400" />
+            <Filter className="w-5 h-5 text-slate-400 dark:text-slate-500" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+              className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
             >
               <option value="todos">Todos os livros</option>
               <option value="LENDO">Estou lendo</option>
@@ -156,7 +156,7 @@ function BookshelfPage() {
         <EmptyState />
       ) : filtrados.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-slate-500 text-lg">Nenhum livro encontrado com os filtros selecionados</p>
+          <p className="text-slate-500 dark:text-slate-400 text-lg">Nenhum livro encontrado com os filtros selecionados</p>
         </div>
       ) : (
         <div className="book-grid">

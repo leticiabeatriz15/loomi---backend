@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { BookOpen, Plus, LogOut } from 'lucide-react'
 import BookshelfPage from './pages/BookshelfPage'
 import AddBookPage from './pages/AddBookPage'
+import ThemeToggle from './components/ThemeToggle'
 import './App.css'
 
 function App() {
@@ -19,9 +20,9 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
         {/* Header */}
-        <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-slate-200">
+        <header className="sticky top-0 z-50 bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700 transition-colors duration-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center justify-between">
               <Link to="/" className="flex items-center gap-2 group">
@@ -38,8 +39,8 @@ function App() {
 
               {usuario && (
                 <nav className="flex items-center gap-6">
-                  <div className="text-sm text-slate-700">
-                    Bem-vindo, <span className="font-semibold text-indigo-600">{usuario.nome}</span>
+                  <div className="text-sm text-slate-700 dark:text-slate-300">
+                    Bem-vindo, <span className="font-semibold text-indigo-600 dark:text-indigo-400">{usuario.nome}</span>
                   </div>
                   <Link
                     to="/adicionar"
@@ -48,8 +49,9 @@ function App() {
                     <Plus className="w-4 h-4" />
                     Adicionar Livro
                   </Link>
-                  <button className="p-2 hover:bg-slate-100 rounded-lg transition">
-                    <LogOut className="w-5 h-5 text-slate-500" />
+                  <ThemeToggle />
+                  <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition">
+                    <LogOut className="w-5 h-5 text-slate-500 dark:text-slate-400" />
                   </button>
                 </nav>
               )}
@@ -66,11 +68,11 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-white border-t border-slate-200 mt-16">
+        <footer className="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-16 transition-colors duration-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="text-center text-slate-500 text-sm">
-              <p>© 2024 Loomi - Sua Estante Virtual de Livros</p>
-              <p className="mt-2">Compartilhe sua paixão por leitura</p>
+            <div className="text-center text-slate-500 dark:text-slate-400 text-sm">
+              <p>© 2026 Loomi - Sua Estante Virtual de Livros</p>
+              <p className="mt-2">Feito por: Christian David, Emanuelle de Carvalho e Letícia Beatriz</p>
             </div>
           </div>
         </footer>

@@ -49,32 +49,32 @@ function EditBookModal({ livro, isOpen, onClose, onUpdate }) {
   if (!isOpen || !livro) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full animate-fadeIn">
+    <div className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-md w-full animate-fadeIn">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-200">
-          <h2 className="text-xl font-bold text-slate-900">Atualizar Progresso</h2>
+        <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Atualizar Progresso</h2>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-slate-100 rounded-lg transition"
+            className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition"
           >
-            <X className="w-5 h-5 text-slate-500" />
+            <X className="w-5 h-5 text-slate-500 dark:text-slate-400" />
           </button>
         </div>
 
         {/* Conteúdo */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {/* Info do Livro */}
-          <div className="bg-slate-50 p-4 rounded-lg">
-            <p className="text-sm text-slate-600">
-              <span className="font-semibold text-slate-900">{livro.nome}</span>
+          <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg">
+            <p className="text-sm text-slate-600 dark:text-slate-300">
+              <span className="font-semibold text-slate-900 dark:text-white">{livro.nome}</span>
             </p>
-            <p className="text-xs text-slate-500 mt-1">ISBN: {livro.isbn}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">ISBN: {livro.isbn}</p>
           </div>
 
           {/* Opções de Status */}
           <div className="space-y-3">
-            <label className="block text-sm font-semibold text-slate-700">
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300">
               Status de Leitura
             </label>
             
@@ -85,22 +85,22 @@ function EditBookModal({ livro, isOpen, onClose, onUpdate }) {
                 onClick={() => handleStatusChange('QUERO_LER')}
                 className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition ${
                   formData.secoes === 'QUERO_LER'
-                    ? 'border-pink-500 bg-pink-50'
-                    : 'border-slate-200 bg-white hover:border-slate-300'
+                    ? 'border-pink-500 bg-pink-50 dark:bg-pink-900/30'
+                    : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-700/50 hover:border-slate-300 dark:hover:border-slate-600'
                 }`}
               >
                 <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                   formData.secoes === 'QUERO_LER'
                     ? 'border-pink-500 bg-pink-500'
-                    : 'border-slate-300'
+                    : 'border-slate-300 dark:border-slate-600'
                 }`}>
                   {formData.secoes === 'QUERO_LER' && (
                     <CheckCircle className="w-4 h-4 text-white" />
                   )}
                 </div>
                 <div className="text-left">
-                  <p className="text-sm font-medium text-slate-900">Quero Ler</p>
-                  <p className="text-xs text-slate-500">Você ainda não começou este livro</p>
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">Quero Ler</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Você ainda não começou este livro</p>
                 </div>
               </button>
 
@@ -110,22 +110,22 @@ function EditBookModal({ livro, isOpen, onClose, onUpdate }) {
                 onClick={() => handleStatusChange('LENDO')}
                 className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition ${
                   formData.secoes === 'LENDO'
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-slate-200 bg-white hover:border-slate-300'
+                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30'
+                    : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-700/50 hover:border-slate-300 dark:hover:border-slate-600'
                 }`}
               >
                 <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                   formData.secoes === 'LENDO'
                     ? 'border-blue-500 bg-blue-500'
-                    : 'border-slate-300'
+                    : 'border-slate-300 dark:border-slate-600'
                 }`}>
                   {formData.secoes === 'LENDO' && (
                     <CheckCircle className="w-4 h-4 text-white" />
                   )}
                 </div>
                 <div className="text-left">
-                  <p className="text-sm font-medium text-slate-900">Estou Lendo</p>
-                  <p className="text-xs text-slate-500">Você está no meio da leitura</p>
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">Estou Lendo</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Você está no meio da leitura</p>
                 </div>
               </button>
 
@@ -135,22 +135,22 @@ function EditBookModal({ livro, isOpen, onClose, onUpdate }) {
                 onClick={() => handleStatusChange('LIDO')}
                 className={`w-full flex items-center gap-3 p-3 rounded-lg border-2 transition ${
                   formData.secoes === 'LIDO'
-                    ? 'border-green-500 bg-green-50'
-                    : 'border-slate-200 bg-white hover:border-slate-300'
+                    ? 'border-green-500 bg-green-50 dark:bg-green-900/30'
+                    : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-700/50 hover:border-slate-300 dark:hover:border-slate-600'
                 }`}
               >
                 <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                   formData.secoes === 'LIDO'
                     ? 'border-green-500 bg-green-500'
-                    : 'border-slate-300'
+                    : 'border-slate-300 dark:border-slate-600'
                 }`}>
                   {formData.secoes === 'LIDO' && (
                     <CheckCircle className="w-4 h-4 text-white" />
                   )}
                 </div>
                 <div className="text-left">
-                  <p className="text-sm font-medium text-slate-900">Já Li</p>
-                  <p className="text-xs text-slate-500">Você terminou de ler este livro</p>
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">Já Li</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Você terminou de ler este livro</p>
                 </div>
               </button>
             </div>
@@ -158,8 +158,8 @@ function EditBookModal({ livro, isOpen, onClose, onUpdate }) {
 
           {/* Progresso (se estiver lendo) */}
           {formData.secoes === 'LENDO' && (
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <label className="block text-sm font-semibold text-slate-700 mb-3">
+            <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">
                 Progresso de Leitura: {formData.andamento}%
               </label>
               <input
@@ -168,9 +168,9 @@ function EditBookModal({ livro, isOpen, onClose, onUpdate }) {
                 max="100"
                 value={formData.andamento}
                 onChange={handleProgressChange}
-                className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                className="w-full h-2 bg-blue-200 dark:bg-blue-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
               />
-              <div className="flex justify-between text-xs text-slate-600 mt-2">
+              <div className="flex justify-between text-xs text-slate-600 dark:text-slate-400 mt-2">
                 <span>0%</span>
                 <span>50%</span>
                 <span>100%</span>
@@ -179,11 +179,11 @@ function EditBookModal({ livro, isOpen, onClose, onUpdate }) {
           )}
 
           {/* Botões */}
-          <div className="flex gap-3 pt-4 border-t border-slate-200">
+          <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition font-medium"
+              className="flex-1 px-4 py-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition font-medium"
             >
               Cancelar
             </button>
