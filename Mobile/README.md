@@ -16,7 +16,7 @@ Uma aplicação React moderna e elegante para gerenciar sua estante virtual de l
 
 ### Pré-requisitos
 - Node.js 18+ e npm/yarn
-- Backend Spring Boot rodando em `http://localhost:8080`
+- Backend Spring Boot rodando em `http://localhost:3000`
 
 ### Passos
 

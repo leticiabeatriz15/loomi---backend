@@ -1,5 +1,6 @@
-import React from 'react'
-import { Trash2, Edit2, BookMarked } from 'lucide-react'
+import React, { useState } from 'react'
+import { Trash2, BookMarked } from 'lucide-react'
+import EditBookModal from './EditBookModal'
 import '../App.css'
 
 function BookCard({ livro, onDelete, onEdit }) {
@@ -91,14 +92,16 @@ function BookCard({ livro, onDelete, onEdit }) {
 
         {/* Botões de Ação */}
         <div className="flex gap-2 pt-2 border-t border-slate-100">
-          <button
-            onClick={() => onEdit(livro)}
-            className="flex-1 flex items-center justify-center gap-1 bg-indigo-50 text-indigo-600 px-2 py-1.5 rounded hover:bg-indigo-100 transition text-xs font-medium"
-            title="Editar livro"
+          <select
+            value={livro.secoes || 'QUERO_LER'}
+            onChange={(e) => onEdit({ ...livro, secoes: e.target.value })}
+            className="flex-1 bg-indigo-50 text-indigo-600 px-2 py-1.5 rounded hover:bg-indigo-100 transition text-xs font-medium cursor-pointer border border-indigo-200"
+            title="Selecione o progresso da leitura"
           >
-            <Edit2 className="w-3 h-3" />
-            <span className="hidden sm:inline">Editar</span>
-          </button>
+            <option value="QUERO_LER">Quero Ler</option>
+            <option value="LENDO">Lendo</option>
+            <option value="LIDO">Já Lido</option>
+          </select>
           <button
             onClick={() => onDelete(livro.id)}
             className="flex-1 flex items-center justify-center gap-1 bg-red-50 text-red-600 px-2 py-1.5 rounded hover:bg-red-100 transition text-xs font-medium"
@@ -107,8 +110,10 @@ function BookCard({ livro, onDelete, onEdit }) {
             <Trash2 className="w-3 h-3" />
             <span className="hidden sm:inline">Deletar</span>
           </button>
-        </div>
+        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
       </div>
+
+      {/* Modal de Edição */}
     </div>
   )
 }

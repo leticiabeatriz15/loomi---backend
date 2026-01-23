@@ -75,8 +75,9 @@ function BookshelfPage() {
   }
 
   const handleEdit = (livro) => {
-    // Implementar modal de edição
-    console.log('Editar livro:', livro)
+    // Atualizar a lista de livros com o livro editado
+    setLivros(livros.map(l => l.id === livro.id ? livro : l))
+    setToast({ type: 'success', message: 'Progresso atualizado com sucesso!' })
   }
 
   const stats = {

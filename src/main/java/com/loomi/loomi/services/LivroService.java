@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.loomi.loomi.domain.livro.Livro;
 import com.loomi.loomi.domain.livro.LivroRepository;
 import com.loomi.loomi.dto.LivroDto;
-
-import jakarta.persistence.EntityNotFoundException;
+import com.loomi.loomi.exception.BusinessException;
+import com.loomi.loomi.exception.ResourceNotFoundException;
 
 @Service
 public class LivroService {
@@ -20,33 +20,86 @@ public class LivroService {
     }
 
     public List<Livro> listarLivros() {
-        return livroRepository.findAll();
+        try {
+            return livroRepository.findAll();
+        } catch (Exception e) {
+            throw new BusinessException("Erro ao listar livros", e);
+        }
     }
 
     public Livro buscarLivroPorId(Long id) {
-        return livroRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("ID inválido");
+        }
+        
+        return livroRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Livro", "id", id));
     }
 
     public Livro criarLivro(Livro livro) {
-        return livroRepository.save(livro);
+        try {
+            validarLivro(livro);
+            if (livro.getIsbn() != null && !livro.getIsbn().isEmpty()) {
+            }
+            
+            return livroRepository.save(livro);
+        } catch (BusinessException | IllegalArgumentException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new BusinessException("Erro ao criar livro", e);
+        }
     }
 
     public Livro atualizarLivro(Long id, LivroDto livroDto) {
-        Livro livro = livroRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("ID inválido");
+        }
+        
+        try {
+            Livro livro = livroRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Livro", "id", id));
 
-        livro.setIsbn(livroDto.isbn());
-        livro.setNome(livroDto.nome());
-        livro.setStatus(livroDto.secoes());
-        livro.setAndamento(livroDto.andamento());
+            livro.setIsbn(livroDto.isbn());
+            livro.setNome(livroDto.nome());
+            livro.setStatus(livroDto.secoes());
+            livro.setAndamento(livroDto.andamento());
 
-        return livroRepository.save(livro);
+            return livroRepository.save(livro);
+        } catch (ResourceNotFoundException | IllegalArgumentException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new BusinessException("Erro ao atualizar livro", e);
+        }
     }
 
     public void deletarLivro(Long id) {
-        if (!livroRepository.existsById(id)) {
-            throw new EntityNotFoundException("Livro não encontrado");
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("ID inválido");
         }
-        livroRepository.deleteById(id);
+        
+        try {
+            if (!livroRepository.existsById(id)) {
+                throw new ResourceNotFoundException("Livro", "id", id);
+            }
+            livroRepository.deleteById(id);
+        } catch (ResourceNotFoundException | IllegalArgumentException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new BusinessException("Erro ao deletar livro", e);
+        }
+    }
+    
+    private void validarLivro(Livro livro) {
+        if (livro == null) {
+            throw new IllegalArgumentException("Livro não pode ser nulo");
+        }
+        
+        if (livro.getNome() == null || livro.getNome().trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do livro é obrigatório");
+        }
+        
+        if (livro.getIsbn() == null || livro.getIsbn().trim().isEmpty()) {
+            throw new IllegalArgumentException("ISBN do livro é obrigatório");
+        }
     }
 }
