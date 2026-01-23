@@ -29,6 +29,7 @@ public class LivroController {
         List<LivroDto> livros = livroService.listarLivros()
                 .stream()
                 .map(livro -> new LivroDto(
+                        livro.getId(),
                         livro.getIsbn(),
                         livro.getNome(),
                         livro.getSecoes(),
@@ -44,6 +45,7 @@ public class LivroController {
         Livro livro = livroService.buscarLivroPorId(id);
 
         LivroDto response = new LivroDto(
+                livro.getId(),
                 livro.getIsbn(),
                 livro.getNome(),
                 livro.getSecoes(),
@@ -64,6 +66,7 @@ public class LivroController {
         Livro salvo = livroService.criarLivro(livro);
 
         LivroDto response = new LivroDto(
+                salvo.getId(),
                 salvo.getIsbn(),
                 salvo.getNome(),
                 salvo.getSecoes(),
@@ -81,6 +84,7 @@ public class LivroController {
         Livro atualizado = livroService.atualizarLivro(id, livroDto);
 
         LivroDto response = new LivroDto(
+                atualizado.getId(),
                 atualizado.getIsbn(),
                 atualizado.getNome(),
                 atualizado.getSecoes(),

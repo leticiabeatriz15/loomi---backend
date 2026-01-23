@@ -27,6 +27,7 @@ function BookshelfPage() {
     try {
       setLoading(true)
       const response = await livroService.listarLivros()
+      console.log('Livros carregados:', response.data)
       setLivros(response.data || [])
     } catch (error) {
       console.error('Erro ao carregar livros:', error)
@@ -56,6 +57,11 @@ function BookshelfPage() {
   }
 
   const handleDelete = async (id) => {
+    console.log('ID recebido para deletar:', id)
+    if (!id) {
+      setToast({ type: 'error', message: 'ID do livro inválido' })
+      return
+    }
     if (window.confirm('Tem certeza que deseja deletar este livro?')) {
       try {
         await livroService.deletarLivro(id)

@@ -24,8 +24,7 @@ public class LivroService {
     }
 
     public Livro buscarLivroPorId(Long id) {
-        return livroRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
+        return livroRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
     }
 
     public Livro criarLivro(Livro livro) {

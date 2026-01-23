@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -32,7 +32,14 @@ export const livroService = {
   atualizarLivro: (id, livroData) => api.put(`/livro/${id}`, livroData),
   
   // Deletar livro
-  deletarLivro: (id) => api.delete(`/livro/${id}`),
+  deletarLivro: (id) => {
+    console.log('Deletando livro com ID:', id)
+    if (!id) {
+      console.error('ID é undefined ou null!')
+      return Promise.reject(new Error('ID inválido'))
+    }
+    return api.delete(`/livro/${id}`)
+  },
 }
 
 export const usuarioService = {

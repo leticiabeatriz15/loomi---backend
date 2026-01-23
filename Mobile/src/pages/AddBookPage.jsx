@@ -9,6 +9,7 @@ function AddBookPage() {
   const [loading, setLoading] = useState(false)
   const [toast, setToast] = useState(null)
   const [formData, setFormData] = useState({
+    id: null,
     isbn: '',
     nome: '',
     secoes: 'QUERO_LER',
