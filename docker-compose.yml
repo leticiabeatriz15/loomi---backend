@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: loomi-postgres
+    environment:
+      POSTGRES_DB: loomi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    # Adicione isto:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d loomi"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+ 
+  backend:
+    build: . 
+    image: loomi:1.0
+    container_name: loomi-backend
+    ports:
+      - "3000:3000"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/loomi
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      
+
+    # Atualize o depends_on para verificar a condição
+    depends_on:
+      postgres:
+        condition: service_healthy
