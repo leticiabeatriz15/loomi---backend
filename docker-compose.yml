@@ -8,7 +8,6 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    # Adicione isto:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d loomi"]
       interval: 5s
@@ -27,7 +26,6 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
       
 
-    # Atualize o depends_on para verificar a condição
     depends_on:
       postgres:
         condition: service_healthy
